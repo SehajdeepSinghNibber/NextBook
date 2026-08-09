@@ -1,5 +1,4 @@
 import Link from "next/link";
-import DesktopNavbar from "./uiComponents/DesktopNavbar";
 import MobileNavbar from "./uiComponents/MobileNavbar";
 
 async function Navbar() {
@@ -14,7 +13,6 @@ async function Navbar() {
             </Link>
           </div>
 
-          <DesktopNavbar />
           <MobileNavbar />
         </div>
       </div>

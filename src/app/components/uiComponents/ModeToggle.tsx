@@ -23,9 +23,7 @@ export default function ModeToggle() {
       onClick={() => setTheme((t) => (t === "luxury" ? "retro" : "luxury"))}
       aria-label="Toggle theme"
     >
-      <SunIcon className="h-5 w-5" />
-      R|L
-      <MoonIcon className="h-5 w-5 ml-1" />
+      {theme === "luxury" ? <SunIcon /> : <MoonIcon />} 
     </button>
   );
 }

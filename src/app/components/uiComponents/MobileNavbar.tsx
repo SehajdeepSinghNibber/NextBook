@@ -2,44 +2,47 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import {
-  useAuth,
-  SignInButton,
-  SignOutButton,
-  UserButton,
-} from "@clerk/nextjs";
-import {
-  BellIcon,
-  HomeIcon,
-  LogOutIcon,
-  MenuIcon,
-  UserIcon,
-} from "lucide-react";
+import { useUser, SignInButton, SignOutButton, UserButton } from "@clerk/nextjs";
+import { BellIcon, HomeIcon, LogOutIcon, MenuIcon, UserIcon } from "lucide-react";
 import ModeToggle from "./ModeToggle";
 
 function MobileNavbar() {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-  const { isSignedIn } = useAuth();
+
+  const { isSignedIn, user } = useUser();
 
   return (
-    <div className="relative flex items-center space-x-2 md:hidden">
-      <ModeToggle />
+    <div className="relative">
 
-      <button
-        onClick={() => setShowMobileMenu((prev) => !prev)}
-        className="rounded-full p-2 transition hover:bg-base-200"
-        aria-label="Toggle Menu"
-      >
-        <MenuIcon size={22} />
-      </button>
+      <div className="flex gap-3">
+        <ModeToggle/>
+
+        <button
+          onClick={() => setShowMobileMenu((prev) => !prev)}
+          className="rounded-full p-2 transition hover:bg-base-200"
+          aria-label="Toggle Menu"
+        >
+          <MenuIcon size={22} />
+        </button>
+
+        <button className="ml-4 mt-1 hidden md:block">
+          <UserButton/>
+        </button>
+
+      </div>
 
       {showMobileMenu && (
         <div className="absolute right-0 top-14 z-50 w-72 overflow-hidden rounded-3xl border border-base-300 bg-base-100 shadow-2xl">
-          {isSignedIn && (
-            <div className="flex items-center gap-3 border-b border-base-300 p-5">
-              <UserButton afterSignOutUrl="/" />
+
+          {isSignedIn && user && (
+            <div className="flex items-center gap-3 border-b border-base-300 p-5  md:hidden">
+              <UserButton />
+
               <div>
-                <p className="font-semibold">My Account</p>
+                <p className="font-semibold">
+                  My Account
+                </p>
+
                 <p className="text-sm opacity-60">
                   Manage your profile
                 </p>
@@ -48,6 +51,7 @@ function MobileNavbar() {
           )}
 
           <nav className="p-3">
+
             <Link
               href="/"
               className="flex items-center gap-3 rounded-xl px-4 py-3 transition hover:bg-base-200"
@@ -92,6 +96,7 @@ function MobileNavbar() {
                 </SignInButton>
               </div>
             )}
+
           </nav>
         </div>
       )}
