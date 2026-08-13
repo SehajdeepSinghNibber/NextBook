@@ -16,11 +16,13 @@ type SidebarUser = {
 };
 
 const UnAuthenticatedSidebar = () => (
-  <div className="sticky top-20 w-full">
-    <div className="mx-auto w-full max-w-xs rounded-lg border border-gray-700 bg-neutral-900 p-4">
+  <div className="sticky top-20 w-full transition-colors duration-300">
+    <div className="mx-auto w-full max-w-xs rounded-lg border border-base-300 bg-base-100 p-4 text-base-content shadow-sm transition-colors">
       <div className="text-center">
-        <h2 className="text-lg font-semibold text-white">Welcome Back!</h2>
-        <p className="mt-1 text-sm text-gray-400">
+        <h2 className="text-lg font-semibold text-base-content">
+          Welcome Back!
+        </h2>
+        <p className="mt-1 text-sm text-base-content/70">
           Sign in to view your profile and follow people.
         </p>
       </div>
@@ -41,13 +43,13 @@ const UnAuthenticatedSidebar = () => (
 function AuthenticatedSidebar({ user }: { user: SidebarUser }) {
   const displayName = user.name ?? "Anonymous";
   return (
-    <div className="sticky top-20 w-full">
-      <div className="mx-auto w-full max-w-xs rounded-lg border border-gray-700 bg-neutral-900 p-4">
+    <div className="sticky top-20 w-full transition-colors ">
+      <div className="mx-auto w-full max-w-xs rounded-lg border border-base-300 bg-base-100 p-4 text-base-content shadow-sm transition-colors">
         <div className="flex flex-col items-center">
           {/* Avatar */}
           <div className="flex justify-center">
             <div className="avatar">
-              <div className="w-20 rounded-full ring-2 ring-gray-800 ring-offset-2 ring-offset-black overflow-hidden">
+              <div className="w-20 overflow-hidden rounded-full ring-2 ring-base-300 ring-offset-2 ring-offset-base-100">
                 {user.image ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
@@ -56,7 +58,7 @@ function AuthenticatedSidebar({ user }: { user: SidebarUser }) {
                     className="h-full w-full object-cover"
                   />
                 ) : (
-                  <div className="flex h-full w-full items-center justify-center bg-gray-800 text-2xl font-semibold text-white">
+                  <div className="flex h-full w-full items-center justify-center text-2xl font-semibold text-base-content">
                     {displayName.charAt(0).toUpperCase()}
                   </div>
                 )}
@@ -66,55 +68,55 @@ function AuthenticatedSidebar({ user }: { user: SidebarUser }) {
 
           {/* Name / Username / Bio */}
           <div className="mt-3 text-center">
-            <h3 className="text-white text-base font-semibold truncate">
+            <h3 className="truncate text-base font-semibold text-base-content">
               {displayName}
             </h3>
-            <p className="mt-1 text-sm text-gray-400 truncate">
+            <p className="mt-1 truncate text-sm text-base-content/70">
               {user.username}
             </p>
             {user.bio && (
-              <p className="mt-2 text-sm text-gray-400">{user.bio}</p>
+              <p className="mt-2 text-sm text-base-content/70">{user.bio}</p>
             )}
           </div>
         </div>
 
         {/* Divider */}
-        <div className="my-3 h-px bg-gray-800" />
+        <div className="my-3 h-px bg-base-300" />
 
         {/* Stats: following / followers */}
         <div className="flex items-center justify-between text-center">
           <div className="flex-1">
-            <div className="text-white text-lg font-medium">
+            <div className="text-lg font-medium text-base-content">
               {user._count.following}
             </div>
-            <div className="text-xs text-gray-400">Following</div>
+            <div className="text-xs text-base-content/70">Following</div>
           </div>
 
-          <div className="w-px bg-gray-800 mx-2 h-8" />
+          <div className="mx-2 h-8 w-px bg-base-300" />
 
           <div className="flex-1">
-            <div className="text-white text-lg font-medium">
+            <div className="text-lg font-medium text-base-content">
               {user._count.followers}
             </div>
-            <div className="text-xs text-gray-400">Followers</div>
+            <div className="text-xs text-base-content/70">Followers</div>
           </div>
         </div>
 
-        <div className="my-3 h-px bg-gray-800" />
+        <div className="my-3 h-px bg-base-300" />
 
         {/* Location / Website rows */}
-        <div className="space-y-2 text-sm text-gray-400">
+        <div className="space-y-2 text-sm text-base-content/70">
           <div className="flex items-center gap-2">
-            <span className="text-gray-400">📍</span>
+            <span className="text-base-content/70">📍</span>
             <span className="truncate">{user.location ?? "No location"}</span>
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="text-gray-400">🔗</span>
+            <span className="text-base-content/70">🔗</span>
             {user.website ? (
               <a
                 href={user.website}
-                className="truncate text-gray-400 hover:underline"
+                className="truncate text-base-content/70 transition-colors hover:text-base-content hover:underline"
                 target="_blank"
                 rel="noopener noreferrer"
               >
